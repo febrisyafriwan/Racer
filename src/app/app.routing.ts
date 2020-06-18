@@ -2,12 +2,14 @@
 // App Routing as a Module
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
-import { ChildOneComponent } from "./child-one/child-one.component";
+import { RegisterComponent } from "./register/register.component";
 
 // Routes
 const routes: Routes = [
-  { path: "one", component: ChildOneComponent },
+  {
+    path: "",
+    component: RegisterComponent
+  },
   { path: "lazy", loadChildren: "./lazy/lazy.module#LazyModule" },
   { path: "**", redirectTo: "" }
 ];
@@ -18,4 +20,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-export const rc = [ChildOneComponent];
+export const rc = [RegisterComponent];
