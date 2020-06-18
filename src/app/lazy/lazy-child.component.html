@@ -1,0 +1,23 @@
+<h3>This is Lazy Child Two loaded inside Router Outlet </h3>
+
+
+<div class="card"> 
+  Data passed with Component Loaded (i.e NgOnInit):
+  <p class="message">This is Star Trek</p>
+</div>
+
+<div class="card">
+  Data passed with this button Click: 
+  <p class="message">This is Star Wars</p>
+  <button (click)='sendData()'>Send Data to Parent</button>
+</div>
+
+<div class="card">
+   <p>Data cleared with this button Click:</p> 
+  <button (click)='clearData()'>Clear Data to parent</button>
+</div>
+
+<div class="card">
+   <p>Data cleared with NgOnDestroy:</p> 
+  <p>Move to another component and ngOnDestroy will clear message</p>
+</div>

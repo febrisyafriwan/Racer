@@ -1,0 +1,89 @@
+.header-container{
+ display:flex;
+ height: 70px;
+ background-color: darkorchid;
+ padding: 0px 10px
+}
+.header-left{
+ display:flex;
+ flex:1;
+ justify-content: flex-start;
+ align-items: center;
+}
+.header-right{
+ display:flex;
+ width: 75px;
+ justify-content: space-around;
+ align-items: center;
+}
+.header-left h2{
+ color:white;
+ margin-left: 10px
+}
+.header-left mat-icon {
+ color:white;
+ font-size :25px;
+ cursor:pointer;
+}
+.header-right mat-icon {
+ color:white;
+ font-size :25px;
+}
+.content-container{
+ height:770px;
+ width: 100%;
+ position:relative;
+}
+.sidenav-container-absolute{
+ height:100%;
+ width: 0px;
+ background-color: rgb(251, 241, 253);
+ position: absolute;
+ overflow: auto;
+ transition:width .5s;
+ z-index: 1;
+}
+.sidenav-container-absolute.active{
+ width: 250px;
+}
+.sidenav-container-flex{
+ display:flex;
+ flex-direction: column;
+ padding: 5px 10px;
+}
+.sidenav-menu{
+ display:flex;
+ flex:1;
+ justify-content: flex-start;
+ align-items: center;
+ border-radius: 10px;
+ transition: margin-left 1s;
+ background-color: darkorchid;
+ margin:5px;
+ padding: 0px 10px;
+}
+.sidenav-menu:hover{
+ cursor:pointer;
+ margin-left:30px
+}
+.sidenav-menu mat-icon{
+ color: white;
+ height: 26px;
+}
+.sidenav-menu h3{
+ margin-left:5px;
+ color: white;
+}
+.child-container-absolute{
+ height:100%;
+ width: 100%;
+ position: absolute;
+ overflow: auto;
+}
+.child-container-flex{
+ display:flex;
+ flex-direction: column;
+ border:1px solid
+}
+
+
