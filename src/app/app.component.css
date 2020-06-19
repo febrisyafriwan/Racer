@@ -156,10 +156,10 @@
  overflow: auto;
 }
 .child-container{
- transition:padding-left .5s;
+ transition: margin-left .5s;
 }
 .child-container.active{
- padding-left:250px;
+ margin-left:250px;
 }
 @media screen and (max-width: 400px) {
 .sidenav-container-absolute.active{

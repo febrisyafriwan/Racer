@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
-import { FormControl, Validators } from "@angular/forms";
+import { FormGroup , Validators , FormBuilder,AbstractControl} from '@angular/forms';
 @Component({
   selector: "register",
   templateUrl: "./register.component.html",
@@ -8,9 +8,6 @@ import { FormControl, Validators } from "@angular/forms";
 })
 export class RegisterComponent {
   constructor() {}
-  emailFormControl = new FormControl("", [
-    Validators.required,
-    Validators.email
-  ]);
+
   ngOnInit() {}
 }
