@@ -1,0 +1,27 @@
+.container{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ position: absolute;
+ height: 100%;
+ width: 100%;
+}
+.content{
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-end;
+ height: 500px;
+ width: 500px;
+ border: 1px solid rgb(227, 227, 240);
+ box-shadow: 5px 10px 8px #888888;
+ padding: 12px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.example-full-width {
+  width: 50%;
+}

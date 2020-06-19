@@ -4,13 +4,13 @@
  height: 100%;
  position:absolute;
  background-color:darkorchid;
- z-index: 1;
+ z-index: -1;
  /* animation: splash 2s 4s;
  animation-fill-mode: both; */
 }
 .container-not-splash{
-  width: 100%;
-  position:absolute;
+ width: 100%;
+ position:absolute;
 }
 .animation-text{
  position:absolute;
@@ -84,6 +84,7 @@
 }
 /* sidenav */
 .sidenav-container-absolute{
+ display: flex;
  height:100%;
  width: 0px;
  background-color: rgb(251, 241, 253);
@@ -97,14 +98,12 @@
 }
 .sidenav-container-flex{
  display:flex;
+ flex:1;
  flex-direction: column;
  padding: 10px 15px;
 }
 .sidenav-profile{
  display:flex;
- flex:1;
- justify-content: flex-start;
- align-items: center;
  margin-top:10px;
  margin-bottom:10px;
 }
@@ -128,7 +127,6 @@
 }
 .sidenav-menu{
  display:flex;
- flex:1;
  justify-content: flex-start;
  align-items: center;
  border-radius: 10px;
@@ -152,21 +150,20 @@
 /* child */
 .child-container-absolute{
  height:100%;
- width: 100%;
+ width:100%;
  background-color: rgb(250, 250, 250);
  position: absolute;
  overflow: auto;
 }
-.child-container-flex{
- display:flex;
- flex-direction: column;
+.child-container{
  transition:padding-left .5s;
 }
-.child-container-flex.active{
+.child-container.active{
  padding-left:250px;
 }
 @media screen and (max-width: 400px) {
-  .sidenav-container-absolute.active{
+.sidenav-container-absolute.active{
  width: 200px;
 }
 }
+

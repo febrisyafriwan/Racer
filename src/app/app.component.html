@@ -1,3 +1,4 @@
+<div>
 <div class='container-not-splash'>
 	<div class="header-container" #target>
 		<div class="header-left">
@@ -28,7 +29,7 @@
 			</div>
 		</div>
 		<div class='child-container-absolute'>
-			<div class='child-container-flex' [ngClass]="setMyClasses()">
+			<div class='child-container' [ngClass]="setMyClasses()">
 				<router-outlet></router-outlet>
 			</div>
 		</div>
@@ -39,4 +40,5 @@
 	<div class='animation-text'>
 		<h2>Racer</h2>
 	</div>
+</div>
 </div>
