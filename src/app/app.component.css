@@ -1,3 +1,55 @@
+/* splash animation */
+.container-splash{
+ width: 100%;
+ height: 100%;
+ position:absolute;
+ background-color:darkorchid;
+ z-index: 1;
+ /* animation: splash 2s 4s;
+ animation-fill-mode: both; */
+}
+.container-not-splash{
+  width: 100%;
+  position:absolute;
+}
+.animation-text{
+ position:absolute;
+ top: 50%;
+ left: 50%;
+ opacity:0;
+ /* animation: text 4s 0s; */
+}
+.animation-text h2{
+ color:white;
+ margin:0px;
+}
+@keyframes splash {
+  0% {
+   background-color:darkorchid;
+   z-index: 1;
+  }
+  100% {
+   background-color:transparent;
+   z-index: -1;
+  }
+}
+@keyframes text {
+  0% {
+   top: 50%;
+   left: 50%;
+   opacity:0;
+  }
+  25%{
+   top: 50%;
+   left: 50%;
+   opacity:1;
+  }
+  100% {
+   top: 19px;
+   left: 44px;
+   opacity:1;
+  }
+}
 /* header */
 .header-container{
  display:flex;
@@ -27,7 +79,6 @@
 }
 /* container of content consist of sidenav and child */
 .content-container{
-
  width: 100%;
  position:relative;
 }
@@ -70,10 +121,10 @@
  justify-content: center
 }
 .sidenav-profile .email p {
-  margin:5px;
+ margin:5px;
 }
 .sidenav-profile .email h4{
-  margin:2px;
+ margin:2px;
 }
 .sidenav-menu{
  display:flex;
@@ -102,6 +153,7 @@
 .child-container-absolute{
  height:100%;
  width: 100%;
+ background-color: rgb(250, 250, 250);
  position: absolute;
  overflow: auto;
 }

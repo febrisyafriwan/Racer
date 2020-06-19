@@ -1,33 +1,42 @@
-<div class="header-container" #target>
-	<div class="header-left">
-		<mat-icon (click)='activeTab()'>menu</mat-icon>
-		<h2>Racer</h2>
+<div class='container-not-splash'>
+	<div class="header-container" #target>
+		<div class="header-left">
+			<mat-icon (click)='activeTab()'>menu</mat-icon>
+			<h2>Racer</h2>
+		</div>
+		<div class='header-right'>
+			<mat-icon matBadge="15" matBadgeColor="warn" matTooltip="shopping cart" routerLink="/">shopping_cart
+			</mat-icon>
+			<mat-icon matTooltip="Logout" routerLink="/">exit_to_app</mat-icon>
+		</div>
 	</div>
-	<div class='header-right'>
-		<mat-icon matBadge="15" matBadgeColor="warn" matTooltip="shopping cart" routerLink="/">shopping_cart</mat-icon>
-		<mat-icon matTooltip="Logout" routerLink="/">exit_to_app</mat-icon>
+
+	<div class='content-container' [style.height.px]="calculation(target.offsetHeight)">
+		<div class='sidenav-container-absolute' [ngClass]="setMyClasses()">
+			<div class='sidenav-container-flex'>
+				<div class='sidenav-profile'>
+					<img src="https://i.ibb.co/ncgb8Ck/unnamed.jpg" alt="unnamed" border="0">
+					<div class='email'>
+						<h4>Syafriwan</h4>
+						<p>@Syafriwan</p>
+					</div>
+				</div>
+				<div class='sidenav-menu'>
+					<mat-icon>home</mat-icon>
+					<h3>Home</h3>
+				</div>
+			</div>
+		</div>
+		<div class='child-container-absolute'>
+			<div class='child-container-flex' [ngClass]="setMyClasses()">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class='content-container' [style.height.px]="calculation(target.offsetHeight)">
-	<div class='sidenav-container-absolute' [ngClass]="setMyClasses()">
-		<div class='sidenav-container-flex'>
-			<div class='sidenav-profile'>
-				<img src="https://i.ibb.co/ncgb8Ck/unnamed.jpg" alt="unnamed" border="0">
-				<div class='email'>
-					<h4>Syafriwan</h4>
-					<p>@Syafriwan</p>
-				</div>
-			</div>
-			<div class='sidenav-menu'>
-				<mat-icon>home</mat-icon>
-				<h3>Home</h3>
-			</div>
-		</div>
-	</div>
-	<div class='child-container-absolute'>
-		<div class='child-container-flex' [ngClass]="setMyClasses()">
-			<router-outlet></router-outlet>
-		</div>
+<div class='container-splash'>
+	<div class='animation-text'>
+		<h2>Racer</h2>
 	</div>
 </div>
