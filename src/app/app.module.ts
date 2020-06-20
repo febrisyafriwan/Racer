@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { DataService } from "./data.service";
 import { DemoMaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   imports: [
     BrowserModule,
@@ -14,7 +15,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     DemoMaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   declarations: [AppComponent, rc],
   bootstrap: [AppComponent],
