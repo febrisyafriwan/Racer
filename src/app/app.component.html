@@ -1,7 +1,7 @@
 <div>
 <div class='container-not-splash'>
-	<div class="header-container" #target>
-		<div class="header-left">
+	 <div class="header-container" #target>
+		 <div class="header-left">
 			<mat-icon (click)='activeTab()'>menu</mat-icon>
 			<h2>Racer</h2>
 		</div>
@@ -12,7 +12,7 @@
 		</div>
 	</div>
 
-	<div class='content-container' [style.height.px]="calculation(target.offsetHeight)">
+	<div class='content-container' > 
 		<div class='sidenav-container-absolute' [ngClass]="setMyClasses()">
 			<div class='sidenav-container-flex'>
 				<div class='sidenav-profile'>
@@ -32,8 +32,8 @@
 			<div class='child-container' [ngClass]="setMyClasses()">
 				<router-outlet></router-outlet>
 			</div>
-		</div>
-	</div>
+		</div> 
+	</div>  
 </div>
 
 <div class='container-splash'>

@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   getScreenSize(event?:any) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    console.log(this.screenHeight, this.screenWidth);
   }
   calculation(ev?: any) {
     const val = Math.round(this.screenHeight - ev);
