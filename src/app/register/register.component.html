@@ -1,20 +1,43 @@
 <div class='container'>
 	<div class='content'>
+
 		<p>Welcome</p>
-		<div class='content-footer'>
-			<div class='content-form'>
-				<mat-form-field class="example-full-width">
-					<mat-label>Email</mat-label>
-					<input matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
-					<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-						Please enter a valid email address
-					</mat-error>
-					<mat-error *ngIf="emailFormControl.hasError('required')">
-						Email is <strong>required</strong>
-					</mat-error>
-				</mat-form-field>
-				<button>SIGNUP</button>
-			</div>
-		</div>
+
+		<form [formGroup]='loginform' (ngSubmit)='send()' class='example-form'>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Username</mat-label>
+				<input matInput formControlName="username" >
+
+				<mat-error *ngIf="loginform.controls.username.errors?.required ">
+					Username is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Password</mat-label>
+				<input matInput formControlName="password" >
+
+				<mat-error *ngIf="loginform.controls.password.errors?.required ">
+					Password is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Email</mat-label>
+				<input matInput formControlName="email" placeholder="Ex. pat@example.com">
+				<mat-error
+					*ngIf="loginform.controls.email.errors?.email && !loginform.controls.email.errors?.required ">
+					Please enter a valid email address
+				</mat-error>
+				<mat-error *ngIf="loginform.controls.email.errors?.required ">
+					Email is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+
+
+			<button class="example-full-width" mat-raised-button  [disabled]="!loginform.valid" color="primary">Signup</button>
+		</form>
 	</div>
+
 </div>
