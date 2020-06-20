@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
   }
   calculation(ev?: any) {
     const val = Math.round(this.screenHeight - ev);
-    console.log(val);
     return val;
   }
   activeTab() {
