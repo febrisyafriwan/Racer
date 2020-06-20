@@ -9,6 +9,7 @@
  animation-fill-mode: both; */
 }
 .container-not-splash{
+ height: 100%;
  width: 100%;
  position:absolute;
 }
