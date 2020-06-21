@@ -25,16 +25,16 @@ export class RegisterService {
     
     let url = "http://localhost:8080/api/auth/signup";
     let response:any; 
-    // let headers    = new HttpHeaders({  
-    //   'Content-Type': 'application/json', 
-    //   // 'X-Requested-Url': url, 
-    //   // 'X-Requested-Method': 'POST', 
-    //   // 'Authorization': Authorization 
-    // }); 
-    // let options    = { headers: headers }; 
+    let headers    = new HttpHeaders({  
+      'Content-Type': 'application/json', 
+      // 'X-Requested-Url': url, 
+      // 'X-Requested-Method': 'POST', 
+      // 'Authorization': Authorization 
+    }); 
+    let options    = { headers: headers }; 
 
     return this.http
-      .get(url,body) 
+      .post(url,body,options) 
       .map(this.extractData) 
       .catch(this.handleError); 
   }

@@ -6,22 +6,28 @@
 			<mat-label>Role</mat-label>
 			<div>
 				<mat-checkbox [(ngModel)]="role.user">User</mat-checkbox>
-				<mat-checkbox [(ngModel)]="role.admin" >Admin</mat-checkbox>
-				<mat-checkbox [(ngModel)]="role.pm" >Pm</mat-checkbox>
-        
+				<mat-checkbox [(ngModel)]="role.admin">Admin</mat-checkbox>
+				<mat-checkbox [(ngModel)]="role.pm">Pm</mat-checkbox>
+
 			</div>
-      <div *ngIf="!role.user&&!role.admin&&!role.pm">
-        <mat-hint >! Role must be assigned</mat-hint>
-      </div>
-     <mat-divider></mat-divider>
+			<div *ngIf="!role.user&&!role.admin&&!role.pm">
+				<mat-hint>! Role must be assigned</mat-hint>
+			</div>
+			<mat-divider></mat-divider>
 		</div>
 		<form [formGroup]='registerForm' class='example-form'>
 			<mat-form-field class="example-full-width">
-        
+
 				<mat-label>Name</mat-label>
 				<input matInput formControlName="name" >
-
-				<mat-error *ngIf="registerForm.controls.name.errors?.required ">
+				<mat-error *ngIf="registerForm.controls.name.errors?.minLength && !registerForm.controls.name.errors?.required">
+					Min is <strong>3</strong>
+				</mat-error>
+				<!-- <mat-error
+					*ngIf="registerForm.controls.name.errors?.max&&!registerForm.controls.name.errors?.required&&!registerForm.controls.name.errors?.min ">
+					Max is <strong>50</strong>
+				</mat-error> -->
+				<mat-error *ngIf="registerForm.controls.name.errors?.required">
 					Name is <strong>required</strong>
 				</mat-error>
 			</mat-form-field>
@@ -57,7 +63,7 @@
 
 
 		</form>
-		<button class="example-full-width" mat-raised-button (click)="send()" [disabled]="!registerForm.valid || (!role.user&&!role.admin&&!role.pm)" color="primary">Signup</button>
+		<button class="example-full-width" mat-raised-button (click)="send()" color="primary">Signup</button>
 	</div>
 
 </div>
