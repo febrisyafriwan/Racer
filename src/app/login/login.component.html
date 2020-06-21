@@ -1,0 +1,29 @@
+<div class='container'>
+	<div class='content'>
+
+		
+		<form [formGroup]='loginForm' class='example-form'>
+			
+			<mat-form-field class="example-full-width">
+				<mat-label>Username</mat-label>
+				<input matInput formControlName="username" >
+
+				<mat-error *ngIf="loginForm.controls.username.errors?.required ">
+					Username is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Password</mat-label>
+				<input matInput formControlName="password" >
+
+				<mat-error *ngIf="loginForm.controls.password.errors?.required ">
+					Password is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+
+		</form>
+		<button class="example-full-width" mat-raised-button (click)="send()" [disabled]="!loginForm.valid" color="primary">Signup</button>
+	</div>
+
+</div>

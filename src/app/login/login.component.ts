@@ -11,18 +11,13 @@ import {
 } from "@angular/forms";
 
 @Component({
-  selector: "register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"]
+  selector: "login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
-export class RegisterComponent {
+export class LoginComponent {
   userForm  = new User()
-  registerForm: any;
-  role = {
-  user : false,
-  admin : false,
-  pm : false
-  }
+  loginForm: any;
 
   constructor(
     private fb: FormBuilder,
@@ -30,19 +25,16 @@ export class RegisterComponent {
   ) {}
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
-      name: ["", [Validators.required]],
+    this.loginForm = this.fb.group({
       username: ["", [Validators.required]],
       password: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
     });
   }
   send() {
-    console.log(this.role)
-    if (this.registerForm.valid) {
-      console.log("submitted", this.registerForm.value);
+    if (this.loginForm.valid) {
+      console.log("submitted", this.loginForm.value);
     } else {
-      console.log("error", this.registerForm.controls);
+      console.log("error", this.loginForm.controls);
     }
   }
   getData() {

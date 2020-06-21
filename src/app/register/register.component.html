@@ -5,13 +5,19 @@
 		<div class="role">
 			<mat-label>Role</mat-label>
 			<div>
-				<mat-checkbox [(ngModel)]="user">User</mat-checkbox>
-				<mat-checkbox [(ngModel)]="admin">Admin</mat-checkbox>
-				<mat-checkbox [(ngModel)]="pm">Pm</mat-checkbox>
+				<mat-checkbox [(ngModel)]="role.user">User</mat-checkbox>
+				<mat-checkbox [(ngModel)]="role.admin" >Admin</mat-checkbox>
+				<mat-checkbox [(ngModel)]="role.pm" >Pm</mat-checkbox>
+        
 			</div>
+      <div *ngIf="!role.user&&!role.admin&&!role.pm">
+        <mat-hint >! Role must be assigned</mat-hint>
+      </div>
+     <mat-divider></mat-divider>
 		</div>
 		<form [formGroup]='registerForm' class='example-form'>
 			<mat-form-field class="example-full-width">
+        
 				<mat-label>Name</mat-label>
 				<input matInput formControlName="name" >
 
@@ -51,7 +57,7 @@
 
 
 		</form>
-		<button class="example-full-width" mat-raised-button click='send()' [disabled]="!registerForm.valid" color="primary">Signup</button>
+		<button class="example-full-width" mat-raised-button (click)="send()" [disabled]="!registerForm.valid || (!role.user&&!role.admin&&!role.pm)" color="primary">Signup</button>
 	</div>
 
 </div>
