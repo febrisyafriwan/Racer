@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
-import { RegisterProvider } from "../provider/register";
+import { RegisterService } from "../provider/register.service";
 import {User} from "../model/user";
 import {
   FormGroup,
@@ -26,7 +26,7 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private RegisterProvider: RegisterProvider
+    private registerProvider: RegisterService
   ) {}
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class RegisterComponent {
   }
   getData() {
     console.log('i')
-    this.RegisterProvider.getData().subscribe(
+    this.registerProvider.getData().subscribe(
       rs => {
         console.log(rs);
       },
