@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
-import { RegisterProvider } from "../provider/register";
-import {User} from "../model/user";
+import { RegisterProvider } from "../providers/register";
+import {User} from "../models/user";
 import {
   FormGroup,
   Validators,

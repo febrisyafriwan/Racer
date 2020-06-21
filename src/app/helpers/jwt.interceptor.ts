@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AuthenticationService } from '../provider/authentication.service';
+import { AuthenticationService } from '../providers/authentication.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
