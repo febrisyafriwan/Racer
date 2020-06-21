@@ -14,7 +14,7 @@ import 'rxjs/Rx';
   and Angular DI.
 */
 @Injectable()
-export class RegisterProvider {
+export class RegisterService {
 
 
   constructor(public http: HttpClient) {

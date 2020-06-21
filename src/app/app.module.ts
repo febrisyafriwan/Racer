@@ -4,10 +4,13 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppRoutingModule, rc } from "./app.routing";
 import { AppComponent } from "./app.component";
-import { RegisterProvider} from "./provider/register";
+import { RegisterService} from "./provider/register.service";
 import { DemoMaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
+import {JwtInterceptor} from './helpers/jwt.interceptor'
+import {ErrorInterceptor} from './helpers/error.interceptor'
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -21,6 +24,10 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   declarations: [AppComponent, rc],
   bootstrap: [AppComponent],
-  providers: [RegisterProvider]
+  providers: [
+  RegisterService,
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ]
 })
 export class AppModule {}
