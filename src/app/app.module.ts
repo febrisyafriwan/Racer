@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppRoutingModule, rc } from "./app.routing";
 import { AppComponent } from "./app.component";
-import { RegisterService} from "./provider/register.service";
+import { RegisterService} from "./providers/register.service";
 import { DemoMaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';

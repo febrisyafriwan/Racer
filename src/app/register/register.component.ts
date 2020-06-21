@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
 import { RegisterService } from "../providers/register.service";
-import {User} from "../models/user";
+import { User } from "../models/user";
 import {
   FormGroup,
   Validators,
@@ -10,19 +10,26 @@ import {
   FormControl
 } from "@angular/forms";
 
+class UserForm {
+  "name": "";
+  "username": "";
+  "email": "";
+  "role": [];
+  "password": "";
+}
 @Component({
   selector: "register",
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.css"]
 })
 export class RegisterComponent {
-  userForm  = new User()
+  userForm = new UserForm();
   registerForm: any;
   role = {
-  user : false,
-  admin : false,
-  pm : false
-  }
+    user: false,
+    admin: false,
+    pm: false
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -34,20 +41,25 @@ export class RegisterComponent {
       name: ["", [Validators.required]],
       username: ["", [Validators.required]],
       password: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
+      email: ["", [Validators.required, Validators.email]]
     });
   }
   send() {
-    console.log(this.role)
+    for (let prop in this.role) {
+      if (this.role.prop) {
+        this.userForm.role.push(this.role.prop);
+      }
+    }
+    console.log(this.userForm);
     if (this.registerForm.valid) {
       console.log("submitted", this.registerForm.value);
     } else {
       console.log("error", this.registerForm.controls);
     }
   }
-  getData() {
-    console.log('i')
-    this.registerProvider.getData().subscribe(
+  registration() {
+    console.log("i");
+    this.registerProvider.register().subscribe(
       rs => {
         console.log(rs);
       },

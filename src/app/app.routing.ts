@@ -3,14 +3,23 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
-
+import {LoginComponent} from "./login/login.component";
+import {HomeComponent} from "./home/home.component"
 // Routes
 const routes: Routes = [
   {
     path: "",
+    component: HomeComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
+  },
+  {
+    path: "register",
     component: RegisterComponent
   },
-  { path: "lazy", loadChildren: "./lazy/lazy.module#LazyModule" },
+  { path: "admin", loadChildren: "./lazy/lazy.module#LazyModule" },
   { path: "**", redirectTo: "" }
 ];
 
@@ -20,4 +29,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-export const rc = [RegisterComponent];
+export const rc = [RegisterComponent,LoginComponent,HomeComponent];

@@ -21,7 +21,7 @@ export class RegisterService {
    
   }
 
-  getData(): Observable<any> {
+  register(): Observable<any> {
     
     let url = "https://jsonplaceholder.typicode.com/todos/1";
     let response:any; 

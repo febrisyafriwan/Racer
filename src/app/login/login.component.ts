@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
-import { RegisterProvider } from "../providers/register";
+import { RegisterService } from "../providers/register.service";
 import {User} from "../models/user";
 import {
   FormGroup,
@@ -21,7 +21,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private RegisterProvider: RegisterProvider
+    private RegisterProvider: RegisterService
   ) {}
 
   ngOnInit() {
