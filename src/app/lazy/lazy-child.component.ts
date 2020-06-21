@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'my-lazy-child',
@@ -7,27 +6,15 @@ import { DataService } from '../data.service';
 })
 export class LazyChildComponent implements OnInit  {
   
-  constructor(private ds: DataService) {}
+  constructor() {}
 
     msg1 = 'This is message from lazy child';
     msg2 = 'This is message from btn click from lazy child';
      
     ngOnInit(){
         // send message to subscribers via observable subject
-        this.ds.sendData(this.msg1);
+
     }
 
-    sendData(){
-      this.ds.sendData(this.msg2);
-    }
- 
-    ngOnDestroy(){
-        // clear message
-        this.ds.clearData();
-    }
 
-    clearData(){
-      // clear message
-        this.ds.clearData();
-    }
 }

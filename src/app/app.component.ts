@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener, ViewChild } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
-import { DataService } from "./data.service";
 import { Router } from "@angular/router";
 @Component({
   selector: "my-app",

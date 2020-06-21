@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
 import { RegisterProvider } from "../provider/register";
+
 import {
   FormGroup,
   Validators,
@@ -8,38 +9,41 @@ import {
   AbstractControl,
   FormControl
 } from "@angular/forms";
-class Registration {
-  username = "";
-  password = "";
-}
+
 @Component({
   selector: "register",
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.css"]
 })
 export class RegisterComponent {
-  loginform: any;
+
+  registerForm: any;
+  user:false;
+  admin:false;
+  pm:false;
   constructor(
     private fb: FormBuilder,
     private RegisterProvider: RegisterProvider
   ) {}
 
   ngOnInit() {
-    this.loginform = this.fb.group({
+    this.registerForm = this.fb.group({
+      name: ["", [Validators.required]],
       username: ["", [Validators.required]],
       password: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]]
+      email: ["", [Validators.required, Validators.email]],
     });
    
   }
   send() {
-    if (this.loginform.valid) {
-      console.log("submitted", this.loginform.value);
+    if (this.registerForm.valid) {
+      console.log("submitted", this.registerForm.value);
     } else {
-      console.log("error", this.loginform.controls);
+      console.log("error", this.registerForm.controls);
     }
   }
   getData() {
+    console.log('i')
     this.RegisterProvider.getData().subscribe(
       rs => {
         console.log(rs);

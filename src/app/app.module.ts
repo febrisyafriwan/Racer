@@ -4,7 +4,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppRoutingModule, rc } from "./app.routing";
 import { AppComponent } from "./app.component";
-import { DataService } from "./data.service";
 import { RegisterProvider} from "./provider/register";
 import { DemoMaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -22,6 +21,6 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   declarations: [AppComponent, rc],
   bootstrap: [AppComponent],
-  providers: [DataService,RegisterProvider]
+  providers: [RegisterProvider]
 })
 export class AppModule {}
