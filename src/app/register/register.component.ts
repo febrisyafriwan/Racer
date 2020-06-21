@@ -11,11 +11,11 @@ import {
 } from "@angular/forms";
 
 class UserForm {
-  "name": "";
-  "username": "";
-  "email": "";
-  "role": [];
-  "password": "";
+  name: string;
+  username: string;
+  email: string;
+  role = [];
+  password: string;
 }
 @Component({
   selector: "register",
@@ -44,28 +44,35 @@ export class RegisterComponent {
       email: ["", [Validators.required, Validators.email]]
     });
   }
-  send() {
+  resetValue() {
+    this.userForm = new UserForm();
+  }
+  setValue() {
+    this.resetValue();
+    this.userForm.name = this.registerForm.value.name;
+    this.userForm.username = this.registerForm.value.username;
+    this.userForm.password = this.registerForm.value.password;
+    this.userForm.email = this.registerForm.value.email;
+    //set role
     for (let prop in this.role) {
-      if (this.role.prop) {
-        this.userForm.role.push(this.role.prop);
+      console.log(this.role[prop]);
+      if (this.role[prop]) {
+        this.userForm.role.push(prop);
       }
     }
-    console.log(this.userForm);
+  }
+  send() {
+    this.setValue();
+    console.log(JSON.stringify(this.userForm));
     if (this.registerForm.valid) {
-      console.log("submitted", this.registerForm.value);
+      // this.registerProvider.register(JSON.stringify(this.userForm)).subscribe(
+      //   rs => {
+      //     console.log(rs);
+      //   },
+      //   error => {console.log(error)}
+      // );
     } else {
       console.log("error", this.registerForm.controls);
     }
-  }
-  registration() {
-    console.log("i");
-    this.registerProvider.register().subscribe(
-      rs => {
-        console.log(rs);
-      },
-      error => {}
-    );
-    //untuk lazy load backend harus menyediakan limit offset dan total element
-    /* */
   }
 }
