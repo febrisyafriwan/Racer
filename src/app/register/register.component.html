@@ -21,7 +21,7 @@
 				<mat-label>Name</mat-label>
 				<input matInput formControlName="name" >
 				<mat-error *ngIf="registerForm.controls.name.errors?.minLength && !registerForm.controls.name.errors?.required">
-					Min is <strong>3</strong>
+						Name is <strong>required</strong>
 				</mat-error>
 				<!-- <mat-error
 					*ngIf="registerForm.controls.name.errors?.max&&!registerForm.controls.name.errors?.required&&!registerForm.controls.name.errors?.min ">
@@ -31,6 +31,7 @@
 					Name is <strong>required</strong>
 				</mat-error>
 			</mat-form-field>
+      
 			<mat-form-field class="example-full-width">
 				<mat-label>Username</mat-label>
 				<input matInput formControlName="username" >
