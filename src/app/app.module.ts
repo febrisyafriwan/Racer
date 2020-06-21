@@ -26,8 +26,6 @@ import {ErrorInterceptor} from './helpers/error.interceptor'
   bootstrap: [AppComponent],
   providers: [
   RegisterService,
-  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ]
 })
 export class AppModule {}

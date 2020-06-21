@@ -59,8 +59,9 @@ export class RegisterService {
       errMsg = error.message ? error.message : error.toString();
       const body = error.message || '';
       errObj = body;
+     
     }
 
-    return Observable.throw(errObj);
+    return Observable.throw(error.status);
   }
 }
