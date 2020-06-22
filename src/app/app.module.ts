@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './helpers/jwt.interceptor'
 import {ErrorInterceptor} from './helpers/error.interceptor'
-
+import {DialogComponent} from './helpers/dialog/dialog.component'
 @NgModule({
   imports: [
     BrowserModule,
@@ -22,8 +22,9 @@ import {ErrorInterceptor} from './helpers/error.interceptor'
     FormsModule,
     HttpClientModule
   ],
-  declarations: [AppComponent, rc],
+  declarations: [AppComponent, rc,DialogComponent],
   bootstrap: [AppComponent],
+  entryComponents: [DialogComponent],
   providers: [
   RegisterService,
   ]

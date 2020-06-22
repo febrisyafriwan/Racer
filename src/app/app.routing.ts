@@ -5,7 +5,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
-import {DialogComponent} from './helpers/dialog/dialog.component'
+
 // Routes
 const routes: Routes = [
   {
@@ -30,4 +30,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-export const rc = [RegisterComponent,LoginComponent,HomeComponent,DialogComponent];
+export const rc = [RegisterComponent,LoginComponent,HomeComponent];

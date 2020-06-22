@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
-import { RegisterService } from "../providers/register.service";
+import { AuthenticationService } from "../providers/authentication.service";
 import {User} from "../models/user";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "../helpers/dialog/dialog.component";
 import {
   FormGroup,
   Validators,
@@ -9,19 +11,23 @@ import {
   AbstractControl,
   FormControl
 } from "@angular/forms";
-
+class UserForm {
+  username: string;
+  password: string;
+}
 @Component({
   selector: "login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent {
-  userForm  = new User()
+  userForm  = new UserForm()
   loginForm: any;
 
   constructor(
     private fb: FormBuilder,
-    private RegisterProvider: RegisterService
+    private authProvider: AuthenticationService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -30,22 +36,63 @@ export class LoginComponent {
       password: ["", [Validators.required]],
     });
   }
+    resetValue() {
+    this.userForm = new UserForm();
+  }
+  buildRegisterForm() {
+    this.loginForm = this.fb.group({
+      username: ["", [Validators.required]],
+      password: ["", [Validators.required]],
+    });
+  }
+  setValue() {
+    this.resetValue();
+    this.userForm.username = this.loginForm.value.username;
+    this.userForm.password = this.loginForm.value.password;
+  }
   send() {
+    this.setValue();
+    console.log(JSON.stringify(this.userForm));
     if (this.loginForm.valid) {
-      console.log("submitted", this.loginForm.value);
-    } else {
-      console.log("error", this.loginForm.controls);
+      this.authProvider.login(JSON.stringify(this.userForm)).subscribe(
+        rs => {
+          console.log(rs);
+          console.log("berhasil");
+          this.openDialogSuccess();
+          this.buildRegisterForm();
+        },
+        error => {
+          console.log(error);
+          console.log("error");
+          if (error == 400) {
+            this.openDialogFail();
+          } else if (error == 200) {
+            this.openDialogSuccess();
+          }else if (error == 401) {
+            this.openDialogFail();
+          this.buildRegisterForm();
+        }
+      );
     }
   }
-  getData() {
-    console.log('i')
-    this.RegisterProvider.getData().subscribe(
-      rs => {
-        console.log(rs);
-      },
-      error => {}
-    );
-    //untuk lazy load backend harus menyediakan limit offset dan total element
-    /* */
+ openDialogFail() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        message: "Username or Password is wrong",
+        buttonText: {
+          cancel: "Ok"
+        }
+      }
+    });
+  }
+  openDialogSuccess() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        message: "Login Success",
+        buttonText: {
+          cancel: "Ok"
+        }
+      }
+    });
   }
 }

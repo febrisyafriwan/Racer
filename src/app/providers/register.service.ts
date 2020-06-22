@@ -61,7 +61,6 @@ export class RegisterService {
       errObj = body;
      
     }
-
     return Observable.throw(error.status);
   }
 }

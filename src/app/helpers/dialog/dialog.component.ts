@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { VERSION, MatDialogRef, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import {MatDialog,MAT_DIALOG_DATA,MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html'
+  templateUrl: './dialog.component.html',
+  styleUrls: ["./dialog.component.css"]
 })
 export class DialogComponent {
   message: string = ""

@@ -3,7 +3,7 @@ import { first } from "rxjs/operators";
 import { RegisterService } from "../providers/register.service";
 import { User } from "../models/user";
 import { MatDialog } from "@angular/material/dialog";
-import {DialogComponent} from '../helpers/dialog/dialog.component'
+import { DialogComponent } from "../helpers/dialog/dialog.component";
 import {
   FormGroup,
   Validators,
@@ -40,6 +40,12 @@ export class RegisterComponent {
   ) {}
 
   ngOnInit() {
+    this.buildRegisterForm();
+  }
+  resetValue() {
+    this.userForm = new UserForm();
+  }
+  buildRegisterForm() {
     this.registerForm = this.fb.group({
       name: [
         "",
@@ -55,9 +61,11 @@ export class RegisterComponent {
       ],
       email: ["", [Validators.required, Validators.email]]
     });
-  }
-  resetValue() {
-    this.userForm = new UserForm();
+    this.role = {
+      user: false,
+      admin: false,
+      pm: false
+    };
   }
   setValue() {
     this.resetValue();
@@ -79,27 +87,41 @@ export class RegisterComponent {
       this.registerProvider.register(JSON.stringify(this.userForm)).subscribe(
         rs => {
           console.log(rs);
+          console.log("berhasil");
+          this.openDialogSuccess();
+          this.buildRegisterForm();
         },
         error => {
           console.log(error);
-          this.openDialog();
+          console.log("error");
+          if (error == 400) {
+            this.openDialogFail();
+          } else if (200) {
+            this.openDialogSuccess();
+          }
+          this.buildRegisterForm();
         }
       );
-    } else {
-      console.log("error", this.registerForm.controls);
     }
   }
-
-  openAlertDialog() {
-    const dialogRef = this.dialog.open(DialogComponent,{
-      data:{
-        message: 'HelloWorld',
+  openDialogFail() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        message: "Username or Email is already taken",
         buttonText: {
-          cancel: 'Done'
+          cancel: "Ok"
         }
-      },
+      }
     });
   }
- 
+  openDialogSuccess() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        message: "Register Success",
+        buttonText: {
+          cancel: "Ok"
+        }
+      }
+    });
+  }
 }
-

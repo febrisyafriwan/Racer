@@ -33,8 +33,14 @@
 .role div{
  display: flex;
  padding-top: 5px;
+ 
+}
+.role mat-label{
+ color:#918c8c;
+ font-size:12px;
 }
 .role div mat-checkbox {
+ color:#918c8c;
  padding: 0px 5px;
 }
 .role mat-hint{
