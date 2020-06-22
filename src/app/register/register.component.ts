@@ -2,7 +2,8 @@ import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
 import { RegisterService } from "../providers/register.service";
 import { User } from "../models/user";
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from "@angular/material/dialog";
+import {DialogComponent} from '../helpers/dialog/dialog.component'
 import {
   FormGroup,
   Validators,
@@ -40,9 +41,18 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      name: ["", [Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
-      username: ["", [Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
-      password: ["", [Validators.required,Validators.minLength(7),Validators.maxLength(50)]],
+      name: [
+        "",
+        [Validators.required, Validators.minLength(4), Validators.maxLength(50)]
+      ],
+      username: [
+        "",
+        [Validators.required, Validators.minLength(4), Validators.maxLength(50)]
+      ],
+      password: [
+        "",
+        [Validators.required, Validators.minLength(7), Validators.maxLength(50)]
+      ],
       email: ["", [Validators.required, Validators.email]]
     });
   }
@@ -70,21 +80,26 @@ export class RegisterComponent {
         rs => {
           console.log(rs);
         },
-        error => {console.log(error)
-        this.openDialog()}
+        error => {
+          console.log(error);
+          this.openDialog();
+        }
       );
     } else {
       console.log("error", this.registerForm.controls);
     }
   }
-  
-  openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(DialogComponent,{
+      data:{
+        message: 'HelloWorld',
+        buttonText: {
+          cancel: 'Done'
+        }
+      },
+    });
   }
+ 
 }
 
-@Component({
-  selector: 'dialog-elements-example-dialog',
-  templateUrl: 'dialog-elements-example-dialog.html',
-})
-export class DialogElementsExampleDialog {}
