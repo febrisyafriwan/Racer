@@ -64,6 +64,7 @@ export class LoginComponent {
           console.log("berhasil");
           this.openDialogSuccess();
           this.buildRegisterForm();
+          this.router.navigate(["/"]);
         },
         error => {
           console.log(error);
