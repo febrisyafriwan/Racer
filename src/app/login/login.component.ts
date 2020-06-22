@@ -10,6 +10,7 @@ import {
   FormControl
 } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+import { map} from 'rxjs/operators';
 class UserForm {
   username: string;
   password: string;

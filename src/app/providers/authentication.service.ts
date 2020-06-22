@@ -37,9 +37,8 @@ export class AuthenticationService {
     });
     let options = { headers: headers };
 
-    return this.http
-      .post(url, body, options)
-      .map(rs => {
+    return this.http.post(url, body, options).pipe(
+      map(rs => {
         if (rs && rs.data) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.userAuth.name = rs.data.principal.name;
@@ -55,29 +54,28 @@ export class AuthenticationService {
           this.currentUserSubject.next(this.userAuth);
         }
       })
-      .catch(this.handleError);
+    );
   }
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);
   }
-   register(body:any): Observable<any> {
-    
+  register(body: any): Observable<any> {
     let url = "http://localhost:8080/api/auth/signup";
-    let response:any; 
-    let headers    = new HttpHeaders({  
-      'Content-Type': 'application/json', 
-      // 'X-Requested-Url': url, 
-      // 'X-Requested-Method': 'POST', 
-      // 'Authorization': Authorization 
-    }); 
-    let options    = { headers: headers }; 
+    let response: any;
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json"
+      // 'X-Requested-Url': url,
+      // 'X-Requested-Method': 'POST',
+      // 'Authorization': Authorization
+    });
+    let options = { headers: headers };
 
     return this.http
-      .post(url,body,options) 
-      .map(this.extractData) 
-      .catch(this.handleError); 
+      .post(url, body, options)
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   private extractData(body: any) {
