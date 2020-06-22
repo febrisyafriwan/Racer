@@ -6,35 +6,36 @@
 				<h2>Racer</h2>
 			</div>
 			<div class='header-right'>
-				<mat-icon matBadge="15" matBadgeColor="warn" matTooltip="shopping cart" routerLink="/">shopping_cart
+				<mat-icon matBadge="15" (click)='checkUser()' matBadgeColor="warn" matTooltip="shopping cart"
+					routerLink="/">shopping_cart
 				</mat-icon>
-				<mat-icon matTooltip="Logout" routerLink="/">exit_to_app</mat-icon>
+				<mat-icon matTooltip="Logout" (click)='signout()'>exit_to_app</mat-icon>
 			</div>
 		</div>
 
 		<div class='content-container'>
 			<div class='sidenav-container-absolute' [ngClass]="setMyClasses()">
 				<div class='sidenav-container-flex'>
-					<div class='sidenav-profile'>
+					<div class='sidenav-profile' *ngIf="currentUser">
 						<img src="https://i.ibb.co/ncgb8Ck/unnamed.jpg" alt="unnamed" border="0">
 						<div class='email'>
-							<h4>Syafriwan</h4>
-							<p>@Syafriwan</p>
+							<h4>{{currentUser.name}}</h4>
+							<p>{{currentUser.email}}</p>
 						</div>
 					</div>
-					<div class='sidenav-menu' routerLink="/home" >
+					<div class='sidenav-menu' routerLink="/home" *ngIf="currentUser">
 						<mat-icon>home</mat-icon>
 						<h3>Home</h3>
 					</div>
-					<div class='sidenav-menu' routerLink="/login" >
+					<div class='sidenav-menu' routerLink="/login">
 						<mat-icon>login</mat-icon>
 						<h3>Login</h3>
 					</div>
-					<div class='sidenav-menu' routerLink="/register" >
+					<div class='sidenav-menu' routerLink="/register">
 						<mat-icon>how_to_reg</mat-icon>
 						<h3>Register</h3>
 					</div>
-					<div class='sidenav-menu' routerLink="/admin" >
+					<div class='sidenav-menu' routerLink="/admin" *ngIf="isAdmin">
 						<mat-icon>admin_panel_settings</mat-icon>
 						<h3>Admin</h3>
 					</div>

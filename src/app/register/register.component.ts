@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { first } from "rxjs/operators";
-import { RegisterService } from "../providers/register.service";
+import { AuthenticationService } from "../providers/authentication.service";
 import { User } from "../models/user";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../helpers/dialog/dialog.component";
@@ -35,7 +35,7 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private registerProvider: RegisterService,
+    private authProvider: AuthenticationService,
     public dialog: MatDialog
   ) {}
 
@@ -84,7 +84,7 @@ export class RegisterComponent {
     this.setValue();
     console.log(JSON.stringify(this.userForm));
     if (this.registerForm.valid) {
-      this.registerProvider.register(JSON.stringify(this.userForm)).subscribe(
+      this.authProvider.register(JSON.stringify(this.userForm)).subscribe(
         rs => {
           console.log(rs);
           console.log("berhasil");

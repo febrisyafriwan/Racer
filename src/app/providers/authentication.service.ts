@@ -11,6 +11,7 @@ import { User } from "../models/user";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
+  userAuth = new User();
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -25,9 +26,45 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(body:any): Observable<any> {
-    
+  login(body: any): Observable<any> {
     let url = "http://localhost:8080/api/auth/signin";
+    let response: any;
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json"
+      // 'X-Requested-Url': url,
+      // 'X-Requested-Method': 'POST',
+      // 'Authorization': Authorization
+    });
+    let options = { headers: headers };
+
+    return this.http
+      .post(url, body, options)
+      .map(rs => {
+        if (rs && rs.data) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          this.userAuth.name = rs.data.principal.name;
+          this.userAuth.email = rs.data.principal.email;
+          this.userAuth.username = rs.data.principal.username;
+          this.userAuth.token = "Bearer" + " " + rs.accessToken;
+          this.userAuth.email = rs.data.principal.email;
+          rs.data.authorities.map((val, i) => {
+            this.userAuth.role.push(val.authority);
+          });
+          console.log(this.userAuth);
+          localStorage.setItem("currentUser", JSON.stringify(this.userAuth));
+          this.currentUserSubject.next(this.userAuth);
+        }
+      })
+      .catch(this.handleError);
+  }
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem("currentUser");
+    this.currentUserSubject.next(null);
+  }
+   register(body:any): Observable<any> {
+    
+    let url = "http://localhost:8080/api/auth/signup";
     let response:any; 
     let headers    = new HttpHeaders({  
       'Content-Type': 'application/json', 
@@ -41,11 +78,6 @@ export class AuthenticationService {
       .post(url,body,options) 
       .map(this.extractData) 
       .catch(this.handleError); 
-  }
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem("currentUser");
-    this.currentUserSubject.next(null);
   }
 
   private extractData(body: any) {

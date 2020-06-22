@@ -5,12 +5,14 @@ import { Routes, RouterModule } from "@angular/router";
 import { RegisterComponent } from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
-
+import {Role} from "./models/role"
+import { AuthGuard } from './guards/auth.guard';
 // Routes
 const routes: Routes = [
   {
     path: "",
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "login",
@@ -20,7 +22,9 @@ const routes: Routes = [
     path: "register",
     component: RegisterComponent
   },
-  { path: "admin", loadChildren: "./lazy/lazy.module#LazyModule" },
+  { path: "admin", loadChildren: "./lazy/lazy.module#LazyModule",
+   data: { roles: [Role.Admin] }, canActivate: [AuthGuard], },
+ 
   { path: "**", redirectTo: "" }
 ];
 

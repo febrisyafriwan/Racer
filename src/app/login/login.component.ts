@@ -1,7 +1,5 @@
 import { Component } from "@angular/core";
-import { first } from "rxjs/operators";
 import { AuthenticationService } from "../providers/authentication.service";
-import { User } from "../models/user";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../helpers/dialog/dialog.component";
 import {
@@ -11,6 +9,7 @@ import {
   AbstractControl,
   FormControl
 } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
 class UserForm {
   username: string;
   password: string;
@@ -21,21 +20,25 @@ class UserForm {
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent {
-  userAuth = new User();
   userForm = new UserForm();
   loginForm: any;
-
+  returnUrl: string;
   constructor(
     private fb: FormBuilder,
     private authProvider: AuthenticationService,
-    public dialog: MatDialog
-  ) {}
-
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(["/"]);
+    }
+  }
   ngOnInit() {
-    this.loginForm = this.fb.group({
-      username: ["", [Validators.required]],
-      password: ["", [Validators.required]]
-    });
+    this.buildRegisterForm();
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    console.log(this.returnUrl);
   }
   resetValue() {
     this.userForm = new UserForm();
@@ -57,25 +60,9 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authProvider.login(JSON.stringify(this.userForm)).subscribe(
         rs => {
-          console.log(rs);
           console.log("berhasil");
           this.openDialogSuccess();
           this.buildRegisterForm();
-          if (rs && rs.data) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-
-            this.userAuth.name = rs.data.principal.name;
-            this.userAuth.email = rs.data.principal.email;
-            this.userAuth.username = rs.data.principal.username;
-            this.userAuth.token = "Bearer"+" "+ rs.accessToken;
-            this.userAuth.email = rs.data.principal.email;
-            rs.data.authorities.map((val,i => {
-              this.userAuth.role.push(val.authorities)
-            }))
-            console.log( this.userAuth)
-            // localStorage.setItem("currentUser", JSON.stringify(this.userAuth));
-            // this.currentUserSubject.next(this.userAuth);
-          }
         },
         error => {
           console.log(error);
