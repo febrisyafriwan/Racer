@@ -11,7 +11,7 @@ import {
   AbstractControl,
   FormControl
 } from "@angular/forms";
-
+import { Router, ActivatedRoute } from "@angular/router";
 class UserForm {
   name: string;
   username: string;
@@ -36,7 +36,9 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authProvider: AuthenticationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -94,10 +96,11 @@ export class RegisterComponent {
         error => {
           console.log(error);
           console.log("error");
-          if (error == 400) {
+          if (error.status == 400) {
             this.openDialogFail();
-          } else if (200) {
+          } else if (error.status == 200) {
             this.openDialogSuccess();
+            this.login()
           }
           this.buildRegisterForm();
         }
@@ -123,5 +126,8 @@ export class RegisterComponent {
         }
       }
     });
+  }
+  login(){
+    this.router.navigate(["/login"]);
   }
 }

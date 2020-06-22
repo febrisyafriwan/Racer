@@ -5,8 +5,8 @@
  position:absolute;
  background-color:darkorchid;
  z-index: -1;
- /* animation: splash 2s 4s;
- animation-fill-mode: both; */
+ animation: splash 2s 4s;
+ animation-fill-mode: both;
 }
 .container-not-splash{
  display: flex;
@@ -21,7 +21,7 @@
  top: 50%;
  left: 50%;
  opacity:0;
- /* animation: text 4s 0s; */
+ animation: text 4s 0s;
 }
 .animation-text h2{
  color:white;

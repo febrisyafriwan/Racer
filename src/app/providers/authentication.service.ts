@@ -27,6 +27,7 @@ export class AuthenticationService {
   }
 
   login(body: any): Observable<any> {
+    this.userAuth = new User()
     let url = "http://localhost:8080/api/auth/signin";
     let response: any;
     let headers = new HttpHeaders({
@@ -40,6 +41,7 @@ export class AuthenticationService {
     return this.http.post(url, body, options).pipe(
       map(rs => {
         if (rs && rs.data) {
+          console.log(rs)
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.userAuth.name = rs.data.principal.name;
           this.userAuth.email = rs.data.principal.email;
@@ -74,8 +76,7 @@ export class AuthenticationService {
 
     return this.http
       .post(url, body, options)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .pipe(map(this.extractData))
   }
 
   private extractData(body: any) {

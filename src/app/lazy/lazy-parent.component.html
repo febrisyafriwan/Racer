@@ -1,25 +1,4 @@
-<h3>This is Lazy Parent </h3>
-
-
-<div class="card"> 
-  Data passed with Component Loaded (i.e NgOnInit):
-  <p class="message">This is message from lazy parent</p>
-</div>
-
-<div class="card">
-  Data passed with this button Click: 
-  <p class="message">This is Star Wars</p>
-  <button (click)='sendData()'>This is message from btn click in lazy parent</button>
-</div>
-
-<div class="card">
-   <p>Data cleared with this button Click:</p> 
-  <button (click)='clearData()'>Clear Data to parent</button>
-</div>
-
-<div class="card">
-   <p>Data cleared with NgOnDestroy:</p> 
-  <p>Move to another component and ngOnDestroy will clear message</p>
-</div>
+<h3>This is Admin's page </h3>
+<div>This page can be accessed just by admin</div>
 
 <router-outlet></router-outlet>

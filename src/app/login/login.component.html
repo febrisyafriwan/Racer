@@ -1,7 +1,7 @@
 <div class='container'>
 	<div class='content'>
 		<form [formGroup]='loginForm' class='example-form'>
-				<p>Login</p>
+			<p>Login</p>
 			<mat-form-field class="example-full-width">
 				<mat-label>Username</mat-label>
 				<input matInput formControlName="username" >
@@ -22,6 +22,7 @@
 
 		</form>
 		<button class="example-full-width" mat-raised-button (click)="send()" [disabled]="!loginForm.valid" color="primary">Signin</button>
+		<button class="example-full-width" mat-raised-button (click)="regist()" color="primary">Signup</button>
 	</div>
 </div>
 <!-- <div>

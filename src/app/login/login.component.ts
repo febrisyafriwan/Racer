@@ -101,4 +101,7 @@ export class LoginComponent {
       }
     });
   }
+  regist(){
+    this.router.navigate(["/register"]);
+  }
 }
