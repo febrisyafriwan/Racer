@@ -7,8 +7,6 @@ import { AppComponent } from "./app.component";
 import { DemoMaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
-import {JwtInterceptor} from './helpers/jwt.interceptor'
-import {ErrorInterceptor} from './helpers/error.interceptor'
 import {DialogComponent} from './helpers/dialog/dialog.component'
 @NgModule({
   imports: [

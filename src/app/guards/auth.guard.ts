@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
 
       if (route.data.roles) {
         currentUser.role.map((v, i) => {
-          console.log(v)
+          
         });
 
       }else{
